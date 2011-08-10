@@ -1,5 +1,5 @@
 YUI.add('exp-tree', function(Y) {
-var YAHOO = Y.YUI2;
+YAHOO = Y.YUI2;
 
 var Dom = YAHOO.util.Dom;
 var Event = YAHOO.util.Event;

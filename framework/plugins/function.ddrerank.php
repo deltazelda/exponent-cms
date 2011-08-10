@@ -94,7 +94,8 @@ function smarty_function_ddrerank($params,&$smarty) {
     
         $script = "
         YUI(EXPONENT.YUI3_CONFIG).use('node','dd-constrain','dd-proxy','dd-drop','dd-scroll','yui2-container', function(Y) {
-
+        YAHOO=Y.YUI2;
+        
         var ropanel".$uniqueid." = new YAHOO.widget.Panel('panel".$uniqueid."', { width:'400px',y:100,zindex:50,visible:false, constraintoviewport:true, fixedcenter:1 } );
     	ropanel".$uniqueid.".render(document.body);
     	YAHOO.util.Dom.removeClass('panel".$uniqueid."', 'hide');
