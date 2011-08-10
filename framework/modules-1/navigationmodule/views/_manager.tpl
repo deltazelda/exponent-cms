@@ -22,19 +22,25 @@
         	{*if $canManagePagesets}<li><a href="#tab3"><em>Page Sets</em></a></li>{/if*}
 	    </ul>            
 	    <div class="yui-content">
-        	<div id="tab1">{include file="`$smarty.const.BASE`framework/modules-1/navigationmodule/views/_manager_hierarchy.tpl"}</div>
-	        {if $canManageStandalones}<div id="tab2">{chain module=navigationmodule action=manage_standalone}</div>{/if}
+        	<div id="tab1">
+        	    {include file="`$smarty.const.BASE`framework/modules-1/navigationmodule/views/_manager_hierarchy.tpl"}
+        	</div>
+	        {if $canManageStandalones}<div id="tab2">
+	            {chain module=navigationmodule action=manage_standalone}</div>
+	        {/if}
         	{*if $canManagePagesets}<div id="tab3">{chain module=navigationmodule action=manage_pagesets}</div>{/if*}
 	    </div>
 	</div>
 </div>
 <div class="loadingdiv">Loading</div>
 
-{script unique="managenavtabs" yuimodules="tabview"}
+{script unique="managenavtabs" yui3mods="1"}
 {literal}
+YUI(EXPONENT.YUI3_CONFIG).use('yui2-tabview', function(Y) {
     var tabView = new YAHOO.widget.TabView('nav-tabs');
     YAHOO.util.Dom.removeClass("navmanager", 'hide');
     var loading = YAHOO.util.Dom.getElementsByClassName('loadingdiv', 'div');
     YAHOO.util.Dom.setStyle(loading, 'display', 'none');
+});
 {/literal}
 {/script}

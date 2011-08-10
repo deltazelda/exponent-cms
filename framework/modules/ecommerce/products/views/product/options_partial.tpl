@@ -14,27 +14,7 @@
  *
  *}
  
-{script unique="optionjs"}
- {literal}
- YAHOO.util.Event.onDOMReady(function(){
-     var toggles = YAHOO.util.Dom.getElementsByClassName('togglelink', 'a');
-     YAHOO.util.Event.on(toggles, 'click', function(e){
-         YAHOO.util.Event.stopEvent(e);
-        var targ = YAHOO.util.Event.getTarget(e);
-        if (YAHOO.util.Dom.getStyle(targ.rel, 'display')=="none") {
-            if (YAHOO.env.ua.ie > 0) {
-                YAHOO.util.Dom.setStyle(targ.rel, 'display', 'block');
-            } else {
-                YAHOO.util.Dom.setStyle(targ.rel, 'display', 'table-row');
-            }
-        } else {
-            YAHOO.util.Dom.setStyle(targ.rel, 'display',"none");
-        }
-     });
-     
- });
- {/literal}
- {/script}
+
 {css unique="option-styles" link="`$asset_path`css/options-edit.css" corecss="tables"}
 
 {/css}
@@ -143,3 +123,24 @@ YUI(EXPONENT.YUI3_CONFIG).use('node', function(Y) {
 {/literal}
 {/script}
 
+{script unique="optionjs"}
+ {literal}
+ YAHOO.util.Event.onDOMReady(function(){
+     var toggles = YAHOO.util.Dom.getElementsByClassName('togglelink', 'a');
+     YAHOO.util.Event.on(toggles, 'click', function(e){
+         YAHOO.util.Event.stopEvent(e);
+        var targ = YAHOO.util.Event.getTarget(e);
+        if (YAHOO.util.Dom.getStyle(targ.rel, 'display')=="none") {
+            if (YAHOO.env.ua.ie > 0) {
+                YAHOO.util.Dom.setStyle(targ.rel, 'display', 'block');
+            } else {
+                YAHOO.util.Dom.setStyle(targ.rel, 'display', 'table-row');
+            }
+        } else {
+            YAHOO.util.Dom.setStyle(targ.rel, 'display',"none");
+        }
+     });
+     
+ });
+ {/literal}
+ {/script}

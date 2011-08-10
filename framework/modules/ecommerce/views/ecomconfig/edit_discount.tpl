@@ -71,9 +71,9 @@
                     If you selected 'Precentage off entire cart', enter the precentage discount you would like applied with this coupon code here.                                                                                                                             
                     {control type="text" name="discount_percent" label="Discount Percent"|gettext filter=percent value=$discount->discount_percent}
                     If you selected 'Fixed amount off entire cart', enter dollar amount discount you would like applied with this coupon code here.
-                    {control type="text" name="discount_amount" label="Discount Amount"|gettext filter=money value=$discount->discount_amount}
+                    {control type="text" name="discount_amount" label="Discount Amount"|gettext filter=money value=$discount->discount_amount|default:"0.00"}
                     If you selected 'Fixed amount off shipping', enter dollar amount you would like discounted off the shipping.
-                    {control type="text" name="shipping_discount_amount" label="Shipping Discount Amount"|gettext filter=money value=$discount->shipping_discount_amount}
+                    {control type="text" name="shipping_discount_amount" label="Shipping Discount Amount"|gettext filter=money value=$discount->shipping_discount_amount|default:"0.00"}
                 </div>                
             </div>
         </div>

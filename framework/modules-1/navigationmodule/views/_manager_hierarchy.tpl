@@ -44,8 +44,11 @@
 	<div id="navtree"><img src="{$smarty.const.ICON_RELATIVE}ajax-loader.gif">	<strong>Loading Navigation</strong></div>
 </div>
 
-{script yui2mods="'treeview','menu','animation','dragdrop','json','container','connection'" unique="DDTreeNav" yuideptype="js"}
+{script yui3mods="1" unique="DDTreeNav"}
 {literal} 
+
+YUI(EXPONENT.YUI3_CONFIG).use('node','yui2-yahoo-dom-event','yui2-treeview','yui2-menu','yui2-animation','yui2-dragdrop','yui2-json','yui2-container','yui2-connection', function(Y) {
+YAHOO=Y.YUI2;
 
 eXp.ddNavTree = function() {
 //////////////////////////////////////////////////////////////////////////////
@@ -53,6 +56,7 @@ eXp.ddNavTree = function() {
 //////////////////////////////////////////////////////////////////////////////
 	
 	var Dom = YAHOO.util.Dom;
+	console.debug(YAHOO.lang.JSON);
 	var Event = YAHOO.util.Event;
 	var DDM = YAHOO.util.DragDropMgr;
 
@@ -463,6 +467,7 @@ eXp.ddNavTree = function() {
 YAHOO.util.Event.onDOMReady(eXp.ddNavTree.init, eXp.ddNavTree,true);
 
 
+});
 
 {/literal}
 {/script}

@@ -93,7 +93,7 @@ function smarty_function_ddrerank($params,&$smarty) {
         echo $html;
     
         $script = "
-        YUI({base:EXPONENT.YUI3_PATH}).use('*', function(Y) {
+        YUI(EXPONENT.YUI3_CONFIG).use('node','dd-constrain','dd-proxy','dd-drop','dd-scroll','yui2-container', function(Y) {
 
         var ropanel".$uniqueid." = new YAHOO.widget.Panel('panel".$uniqueid."', { width:'400px',y:100,zindex:50,visible:false, constraintoviewport:true, fixedcenter:1 } );
     	ropanel".$uniqueid.".render(document.body);
@@ -217,8 +217,7 @@ function smarty_function_ddrerank($params,&$smarty) {
         
         expJavascript::pushToFoot(array(
             "unique"=>$uniqueid,
-            "yui2mods"=>"container",
-            "yui3mods"=>"dd-constrain,dd-proxy,dd-drop,dd-scroll",
+            "yui3mods"=>1,
             "content"=>$script,
          ));
         

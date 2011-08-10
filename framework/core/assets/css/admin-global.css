@@ -238,7 +238,12 @@ a.view {
 .exp-skin-tabview .yui-hidden {
     display:none;
 }
+/* yui3 admin table */
 
+.exp-admin-skin .yui3-tab-loading {
+    height:200px;
+    background:url(../images/loading1.gif) no-repeat 50% 50%;
+}
 
 /****************  tables  ***********************/
 

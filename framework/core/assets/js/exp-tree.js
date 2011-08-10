@@ -1,8 +1,11 @@
+YUI.add('exp-tree', function(Y) {
+var YAHOO = Y.YUI2;
+
 var Dom = YAHOO.util.Dom;
 var Event = YAHOO.util.Event;
 var DDM = YAHOO.util.DragDropMgr;
 
-var expTree = function() {
+EXPONENT.Tree = function() {
 
     expddtree = function(id, sGroup, config) {
         //console.debug(id.replace('ygtv',''))
@@ -627,6 +630,7 @@ var expTree = function() {
 
     return {
         init:function(div,obj,mod,menu,expandonstart){
+
             applicationModule = mod;
             tree = new YAHOO.widget.TreeView(div);
             var root = tree.getRoot();
@@ -665,3 +669,5 @@ var expTree = function() {
         }
     };
 }();
+
+}, '' ,{requires:['node','yui2-yahoo-dom-event','yui2-container','yui2-menu','yui2-treeview','yui2-animation','yui2-dragdrop','yui2-json','yui2-connection']});

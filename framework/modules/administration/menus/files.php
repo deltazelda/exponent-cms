@@ -19,8 +19,8 @@
 if (!defined('EXPONENT')) exit('');
 
 $script = "
-    
-    var filepickerwindow = function (){
+YUI(EXPONENT.YUI3_CONFIG).use('node', function(Y) {
+    EXPONENT.filepickerwindow = function (){
         win = window.open('".makeLink($params=array('controller'=>'file','action'=>'picker','ajax_action'=>'1','update'=>'noupdate'))."', 'IMAGE_BROWSER','left=0,top=0,scrollbars=yes,width=1024,height=600,toolbar=no,resizable=yes,status=0');
         if (!win) {
             //Catch the popup blocker
@@ -35,16 +35,15 @@ $script = "
         }
     }
     
-    YAHOO.util.Event.on('filemanager','click',filepickerwindow);
-    YAHOO.util.Event.on('fileuploader','click',fileuploaderwindow);
-    
+    // Y.one('#filemanager').on('click',filepickerwindow);
+    // Y.one('#fileuploader').on('click',fileuploaderwindow);
+});
 ";
 
 //exponent_javascript_toFoot('zadminfilemanager', '', null, $script);
 expJavascript::pushToFoot(array(
     "unique"=>'zadminfilemanager',
-    "yui2mods"=>'',
-    "yui3mods"=>null,
+    "yui3mods"=>1,
     "content"=>$script,
     "src"=>""
  ));
@@ -57,7 +56,7 @@ return array(
         'itemdata'=>array(
             array(
                 'text'=>gt("File Manager"),
-                'url'=>'#',
+                'url'=>'javascript:"EXPONENT.filepickerwindow(); "',
                 'classname'=>'filemanager',
                 'id'=>'filemanager',
             ),

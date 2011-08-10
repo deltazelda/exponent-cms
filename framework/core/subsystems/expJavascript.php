@@ -113,6 +113,47 @@ class expJavascript {
     public static function pushToFoot($params) {
     	global $js2foot,$yui2js,$yui3js,$expJS;
 
+    	if (self::inAjaxAction()) {
+		    echo "<div class=\"io-execute-response\">";
+		    
+            if(!empty($params['yui2mods'])){
+                $toreplace = array('"',"'"," ");
+                $stripmodquotes = str_replace($toreplace, "", $params['yui2mods']);               
+                $splitmods = explode(",",$stripmodquotes);
+
+                 require_once(BASE.'external/lissa/class.lissa.php');        
+
+                // instantiate loader class for yui2
+                $yui2Loader = new Lissa(YUI2_VERSION, null);
+
+                // instantiate loader class for yui3
+                //$yui3Loader = new Lissa(YUI3_VERSION, null, $expJS);
+
+                // load yui2 modules called for via the scipt plugin
+                foreach ($splitmods as $key=>$mod) {
+                    $yui2Loader->load($mod);
+                }
+                $yui2Loader->combine = intval(MINIFY);
+                $scripts = "\r\n\t"."<!-- YUI2 Scripts -->"."\r\n";
+                $scripts .= $yui2Loader->scripts()."\r\n";
+                echo $scripts;
+            }
+            
+
+    	    if ($params['src']) {
+                echo '<script type="text/javascript" src="'.$params['src'].'"></script>';
+    	    }
+    	    
+		    echo "
+		    <script id=\"".$params['unique']."\" type=\"text/javascript\" charset=\"utf-8\">
+		      ".$params['content']."
+		    </script>
+		    </div>
+		    ";
+		    return true;
+    	}
+
+
     	if (!empty($params['src'])) {
     	    //$src = str_replace(URL_FULL,PATH_RELATIVE,$params['src']);
     	    $src = $params['src'];
@@ -127,15 +168,15 @@ class expJavascript {
             // }
     	}
 
-    	if(!empty($params['yui2mods'])){
-            $toreplace = array('"',"'"," ");
-            $stripmodquotes = str_replace($toreplace, "", $params['yui2mods']);               
-            $splitmods = explode(",",$stripmodquotes);
-
-            foreach ($splitmods as $key=>$val){
-                $yui2js[$val] = $val;
-            }
-        }
+        // if(!empty($params['yui2mods'])){
+        //             $toreplace = array('"',"'"," ");
+        //             $stripmodquotes = str_replace($toreplace, "", $params['yui2mods']);               
+        //             $splitmods = explode(",",$stripmodquotes);
+        // 
+        //             foreach ($splitmods as $key=>$val){
+        //                 $yui2js[$val] = $val;
+        //             }
+        //         }
 
 		if (stristr($params['content'],"use('*',") && isset($params['yui3mods'])) {
             $params['content'] = str_replace("use('*',",('use(\''.str_replace(',','\',\'',$params['yui3mods']).'\','),$params['content']);

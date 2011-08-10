@@ -23,14 +23,16 @@
 
 </div>
 
-{script unique="adminmenubar" yui2mods="menu,connection" yui3mods="yui"}
+{script unique="adminmenubar" yui3mods="yui"}
 {literal}
 /*
               Initialize and render the MenuBar when the page's DOM is ready 
               to be scripted.
          */
 
-         YAHOO.util.Event.onDOMReady(function () {
+         YUI(EXPONENT.YUI3_CONFIG).use('node','dd','anim','yui2-menu','yui2-connection', function(Y) {
+             YAHOO = Y.YUI2;
+             
              var aItemData = [
                 {/literal}{$menu}{literal},
              ];
@@ -52,11 +54,9 @@
                      oElement.style.width = (nOffsetWidth - (oElement.offsetWidth - nOffsetWidth)) + "px";
                  }
              }
-             //oMenuBar.subscribe("show", onSubmenuShow);
              
-         
-         });
-         YUI(EXPONENT.YUI3_CONFIG).use('node','dd','anim', function(Y) {
+             // end yui 2 menu
+             
              var tb = Y.one('#admintoolbar');
 
              //Selector of the node to make draggable

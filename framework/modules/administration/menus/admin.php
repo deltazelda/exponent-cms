@@ -24,25 +24,25 @@ global $user, $db;
 $my_version = EXPONENT_VERSION_MAJOR.".".EXPONENT_VERSION_MINOR.".".EXPONENT_VERSION_REVISION;
 $my_type = EXPONENT_VERSION_TYPE.EXPONENT_VERSION_ITERATION;
 
-$script = "
-    var reportbugwindow = function (){
-        win = window.open('http://exponentcms.lighthouseapp.com/projects/61783-exponent-cms/tickets/new');
-        if (!win) {
-            //Catch the popup blocker
-            alert(\"Your popup blocker has prevented the file manager from opening\");
-        }
-    }
-
-    YAHOO.util.Event.on('reportabug','click',reportbugwindow);
-";
-//exponent_javascript_toFoot('zreportabug', '', null, $script);
-expJavascript::pushToFoot(array(
-    "unique"=>'zreportabug',
-    "yui2mods"=>'',
-    "yui3mods"=>null,
-    "content"=>$script,
-    "src"=>""
- ));
+// $script = "
+//     var reportbugwindow = function (){
+//         win = window.open('http://exponentcms.lighthouseapp.com/projects/61783-exponent-cms/tickets/new');
+//         if (!win) {
+//             //Catch the popup blocker
+//             alert(\"Your popup blocker has prevented the file manager from opening\");
+//         }
+//     }
+// 
+//     YAHOO.util.Event.on('reportabug','click',reportbugwindow);
+// ";
+// //exponent_javascript_toFoot('zreportabug', '', null, $script);
+// expJavascript::pushToFoot(array(
+//     "unique"=>'zreportabug',
+//     "yui2mods"=>'',
+//     "yui3mods"=>null,
+//     "content"=>$script,
+//     "src"=>""
+//  ));
 
 if ($user->isAdmin()) {
 	$expAdminMenu = array(
@@ -63,7 +63,8 @@ if ($user->isAdmin()) {
 							),
 							array(
 								'text' => gt("Report a bug"),
-								'url'=>'#',
+								'url'=>'http://exponentcms.lighthouseapp.com/projects/61783-exponent-cms/tickets/new',
+							    'target'=>'_blank',
 								'id'=>'reportabug',
 								'classname' => 'reportbug',
 							)
