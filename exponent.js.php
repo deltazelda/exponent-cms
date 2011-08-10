@@ -39,6 +39,8 @@ EXPONENT.BASE = "<?php echo BASE; ?>";
 EXPONENT.THEME_RELATIVE = "<?php echo THEME_RELATIVE; ?>";
 EXPONENT.ICON_RELATIVE = "<?php echo ICON_RELATIVE; ?>";
 EXPONENT.JS_FULL = '<?php echo JS_FULL; ?>';
+EXPONENT.YUI2_VERSION = '<?php echo YUI2_VERSION; ?>';
+EXPONENT.YUI3_VERSION = '<?php echo YUI3_VERSION; ?>';
 EXPONENT.YUI2_PATH = '<?php echo YUI2_PATH; ?>';
 EXPONENT.YUI3_PATH = '<?php echo YUI3_PATH; ?>';
 EXPONENT.YUI2_URL = '<?php echo YUI2_URL; ?>';
@@ -58,7 +60,31 @@ EXPONENT.YUI3_CONFIG = {
 <?php 
 } else {
 ?>
-EXPONENT.YUI3_CONFIG = {};
+EXPONENT.YUI3_CONFIG = {
+    combine: false,
+    groups: {
+        yui2: {
+            base:      EXPONENT.PATH_RELATIVE+"external/lissa/2in3/dist/2.9.0/build/",
+            combine:   false,
+            comboBase: "/combo?",
+            fetchCSS: false,
+            root:      "external/lissa/2in3/dist/2.9.0/build/",
+            patterns:  {
+                "yui2-": {
+                    configFn: function (me) {
+                        if(/-skin|reset|fonts|grids|base/.test(me.name)) {
+                            return me;
+                            me.type = "css";
+                            me.path = me.path.replace(/\.js/, ".css");
+                            me.path = me.path.replace(/\/yui2-skin/, "/assets/skins/sam/yui2-skin");
+                        }   
+                    }   
+                }   
+            }   
+        }
+    }
+};
+//console.debug(EXPONENT.YUI3_CONFIG);
 <?php 
 }
 ?>
