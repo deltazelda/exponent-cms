@@ -31,8 +31,8 @@
          */
 
          YUI(EXPONENT.YUI3_CONFIG).use('node','dd','anim','yui2-menu','yui2-connection', function(Y) {
-             YAHOO = Y.YUI2;
-             
+             YAHOO =Y.merge(YAHOO,Y.YUI2);
+
              var aItemData = [
                 {/literal}{$menu}{literal},
              ];

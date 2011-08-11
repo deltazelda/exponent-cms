@@ -92,16 +92,15 @@ class tagtreecontrol extends formcontrol {
 		EXPONENT.YUI3_CONFIG.modules = {
                'exp-tree' : {
                    fullpath: EXPONENT.PATH_RELATIVE+'framework/core/assets/js/exp-tree.js',
-                   requires : ['node','yui2-yahoo-dom-event','yui2-container','yui2-menu','yui2-treeview','yui2-animation','yui2-dragdrop','yui2-json','yui2-connection']
+                   requires : ['node','yui2-container','yui2-menu','yui2-treeview','yui2-animation','yui2-dragdrop','yui2-json','yui2-connection']
                }
          }
 
   		//EXPONENT.YUI3_CONFIG.filter = \".js\";
 
-            YUI(EXPONENT.YUI3_CONFIG).use('node','yui2-yahoo-dom-event','yui2-container','yui2-menu','yui2-treeview','yui2-animation','yui2-dragdrop','yui2-json','yui2-connection','exp-tree', function(Y) {
-                
+            YUI(EXPONENT.YUI3_CONFIG).use('node','exp-tree', function(Y) {
     			var obj2json = ".$obj.";
-				EXPONENT.Tree.init('".$this->id."',obj2json,'".$this->modelname."','".$this->menu."','".$this->expandonstart."');
+				EXPONENT.DragDropTree.init('".$this->id."',obj2json,'".$this->modelname."','".$this->menu."','".$this->expandonstart."');
 				Y.one('.nodetree').next().remove();
 			});
 		";

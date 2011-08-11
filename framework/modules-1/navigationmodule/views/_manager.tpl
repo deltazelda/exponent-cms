@@ -37,6 +37,7 @@
 {script unique="managenavtabs" yui3mods="1"}
 {literal}
 YUI(EXPONENT.YUI3_CONFIG).use('yui2-tabview', function(Y) {
+    var YAHOO = Y.YUI2;
     var tabView = new YAHOO.widget.TabView('nav-tabs');
     YAHOO.util.Dom.removeClass("navmanager", 'hide');
     var loading = YAHOO.util.Dom.getElementsByClassName('loadingdiv', 'div');
