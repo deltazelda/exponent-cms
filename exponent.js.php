@@ -62,6 +62,10 @@ EXPONENT.YUI3_CONFIG = {
 ?>
 EXPONENT.YUI3_CONFIG = {
     combine: false,
+    //filter:   "debug",
+    onFailure: function (error) {
+      console.debug(error);  
+    },
     groups: {
         yui2: {
             base:      EXPONENT.PATH_RELATIVE+"external/lissa/2in3/dist/2.9.0/build/",
@@ -73,7 +77,7 @@ EXPONENT.YUI3_CONFIG = {
                 "yui2-": {
                     configFn: function (me) {
                         if(/-skin|reset|fonts|grids|base/.test(me.name)) {
-                            return me;
+                            //return me;
                             me.type = "css";
                             me.path = me.path.replace(/\.js/, ".css");
                             me.path = me.path.replace(/\/yui2-skin/, "/assets/skins/sam/yui2-skin");
