@@ -10,3 +10,30 @@
 {control type="text" name="height" label="Height (in inches)" size=4 filter=decimal value=$record->height}                
 {control type="text" name="length" label="Length (in inches)" size=4 filter=decimal value=$record->length}          
 {control type="text" name="surcharge" label="Surcharge" size=4 filter=money value=$record->surcharge}
+
+{script unique="prodedit" yui3mods=1}
+{literal}
+YUI(EXPONENT.YUI3_CONFIG).use('yui2-yahoo-dom-event', function(Y) {
+    switchMethods = function() {
+        var dd = YAHOO.util.Dom.get('required_shipping_calculator_id');
+        var methdd = YAHOO.util.Dom.get('dd-'+dd.value);
+
+        var otherdds = YAHOO.util.Dom.getElementsByClassName('methods', 'div');
+        
+        for(i=0; i<otherdds.length; i++) {
+            if (otherdds[i].id == 'dd-'+dd.value) {
+                YAHOO.util.Dom.setStyle(otherdds[i].id, 'display', 'block');
+            } else {
+                YAHOO.util.Dom.setStyle(otherdds[i].id, 'display', 'none');
+            }
+            
+        }
+        YAHOO.util.Dom.setStyle(methdd, 'display', 'block');
+        //console.debug(methdd);
+        //console.debug(dd.value);
+    }
+    YAHOO.util.Event.onDOMReady(switchMethods);
+});
+
+{/literal}
+{/script}
