@@ -93,7 +93,8 @@
          });
 
          var recordPosition = function() {
-             var ajx = new EXPONENT.AjaxEvent();                     
+             var ajx = new EXPONENT.AjaxEvent();            
+                      
              ajx.fetch({action:"update_SetSlingbarPosition",controller:"administrationController",params:"&top="+top});
          };
 

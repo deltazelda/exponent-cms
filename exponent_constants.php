@@ -227,7 +227,7 @@ if (!defined('YUI3_PATH')) {
 	 *
 	 * Changing the version here lets Exponent adjust where to look
 	 */
-	define('YUI3_VERSION', '3.3.0');
+	define('YUI3_VERSION', '3.4.0');
 	define('YUI3_PATH', PATH_RELATIVE.'external/lissa/'.YUI3_VERSION.'/build/');
 	define('YUI3_URL', URL_FULL.'external/lissa/'.YUI3_VERSION.'/build/');
 }

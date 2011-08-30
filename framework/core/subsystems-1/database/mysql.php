@@ -165,7 +165,6 @@ class mysql_database {
 
 //		if (isset($info[DB_TABLE_WORKFLOW]) && $info[DB_TABLE_WORKFLOW]) {
 //			// Initialize workflow tables:
-//			if (!defined("SYS_WORKFLOW")) require_once(BASE."framework/core/subsystems-1/workflow.php");
 //			$wf = exponent_workflow_installWorkflowTables($tablename,$datadef);
 //			foreach ($wf as $key=>$status) {
 //				$return[$key] = $status;
@@ -430,7 +429,6 @@ class mysql_database {
 
 //		if (isset($info[DB_TABLE_WORKFLOW]) && $info[DB_TABLE_WORKFLOW]) {
 //			// Initialize workflow tables:
-//			if (!defined("SYS_WORKFLOW")) require_once(BASE."framework/core/subsystems-1/workflow.php");
 //			$wf = exponent_workflow_alterWorkflowTables($tablename,$newdatadef,$aggressive);
 //			foreach ($wf as $key=>$status) {
 //				$return[$key] = $status;
@@ -1175,6 +1173,16 @@ class mysql_database {
 			ORDER BY node.lft';
 		return $this->selectObjectsBySql($sql);
 		
+	}
+	
+	function selectFormattedNestedTree($table) {
+		$sql = "SELECT CONCAT( REPEAT( '&nbsp;&nbsp;&nbsp;', (COUNT(parent.title) -1) ), node.title) AS title, node.id 
+				FROM " .$this->prefix . $table. " as node, " .$this->prefix . $table. " as parent 
+				WHERE node.lft BETWEEN parent.lft and parent.rgt 
+				GROUP BY node.title, node.id 
+				ORDER BY node.lft";
+				
+		return $this->selectObjectsBySql($sql);
 	}
 
 	function adjustNestedTreeFrom($table, $start, $width) {
